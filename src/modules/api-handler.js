@@ -7,14 +7,35 @@ async function getWeatherData(city) {
             mode: 'cors',
         });
         console.log(`API response status: ${response.status}`);
-        const weatherDataJson = await response.json();
         
+        if (!response.ok) {
+            // If the response is not OK, log the status and status text
+            const errorText = await response.text();
+            console.error(`Error: ${response.status} ${response.statusText}`);
+            console.error(`Error body: ${errorText}`);
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const weatherDataJson = await response.json();
         return weatherDataJson;
     } 
-    catch(error) {
-        console.error(`There was an error ${error}`);
-        return error.json();
+    catch (error) {
+        console.error(`There was an error: ${error.message}`);
+        if (error instanceof Response) {
+            // Attempt to parse the error response as JSON
+            try {
+                const errorJson = await error.json();
+                console.error('Error JSON:', errorJson);
+                return errorJson;
+            } catch (jsonError) {
+                console.error('Error parsing JSON:', jsonError);
+                return { message: 'Error parsing error response as JSON.' };
+            }
+        } else {
+            return { message: 'An unexpected error occurred.' };
+        }
     }
 }
+
 
 export { getWeatherData };

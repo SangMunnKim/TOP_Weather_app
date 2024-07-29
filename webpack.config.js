@@ -20,7 +20,7 @@ module.exports = {
     },
     plugins : [
         new HtmlWebpackPlugin({
-            filename: '[name].[contenthash].html',
+            filename: '[name].html',
             title: 'Webpack Output',
             template: './src/index.html',
         }),
