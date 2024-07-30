@@ -20,11 +20,10 @@ module.exports = {
     },
     plugins : [
         new HtmlWebpackPlugin({
-            filename: '[name].html',
+            filename: 'index.html',
             title: 'Webpack Output',
             template: './src/index.html',
         }),
         new DotenvWebpackPlugin(),
     ],
-    watch: true,
 };
