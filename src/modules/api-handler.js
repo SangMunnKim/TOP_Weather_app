@@ -17,6 +17,9 @@ async function getWeatherData(city) {
         }
 
         const weatherDataJson = await response.json();
+
+        // saveJsonToFile(weatherDataJson, 'weatherData.json');
+
         return weatherDataJson;
     } 
     catch (error) {
@@ -37,5 +40,14 @@ async function getWeatherData(city) {
     }
 }
 
+// function saveJsonToFile(data, filename) {
+//     const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+//     const link = document.createElement('a');
+//     link.href = URL.createObjectURL(blob);
+//     link.download = filename;
+//     document.body.appendChild(link);
+//     link.click();
+//     document.body.removeChild(link);
+// }
 
 export { getWeatherData };

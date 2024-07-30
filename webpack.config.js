@@ -5,7 +5,7 @@ const DotenvWebpackPlugin = require('dotenv-webpack');
 module.exports = {
     entry: './src/index.js',
     output: {
-        filename: 'bundle.js',
+        filename: 'bundle.[contenthash].js',
         path: path.resolve(__dirname, 'dist'),
         clean: true,
     },
