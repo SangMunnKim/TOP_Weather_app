@@ -12,7 +12,6 @@ async function processData(weatherDataJson) {
 async function weatherData(city) {
     const result = await getWeatherData(city);
     const weatherData = processData(result);
-    console.log(weatherData);
     return weatherData;
 };
 

@@ -1,30 +1,34 @@
 import { weatherData } from "./weather-data-handler";
 
 const form = document.querySelector('form');
-const searchBar = document.querySelector('input[type="text"]');
+const searchBar = document.querySelector('input[name="city"]');
 const searchButton = document.querySelector('button');
 const currentConditionsDisplay = document.querySelector('.current-conditions');
 const addressDisplay = document.querySelector('.address');
 
 const search = form.addEventListener('submit', async (e) => {
   e.preventDefault();
-  const searchQuery = searchBar.value;
-  console.log(searchQuery);
-  clearDisplay();
-  const data = await weatherData(searchQuery);
-  displayAddress(data);
-  displayCurrentConditions(data);
+  try { 
+    const searchQuery = await searchBar.value;
+    console.log(searchQuery);
+    clearDisplay();
+    const data = await weatherData(searchQuery);
+    displayAddress(data);
+    displayCurrentConditions(data);
+  } catch (error) {
+    displayError(error);
+  }
+  
 });
 
 function displayAddress(data) {
     const addres = data.address;
-    console.log(addres);
     addressDisplay.textContent = addres;
 }
 
 function displayCurrentConditions(weatherData) {
     for (const [key, value] of Object.entries(weatherData.currentConditions)) {
-        console.log(`${key}: ${value}`);
+        // console.log(`${key}: ${value}`);
 
         //skip null value entries
         if (value === null) {

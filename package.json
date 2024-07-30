@@ -4,7 +4,8 @@
   "description": "The Odin Project Weather App",
   "private": "true",
   "scripts": {
-    "build": "webpack"
+      "build": "webpack --mode production",
+      "watch": "webpack --mode development -w"
   },
   "keywords": [],
   "author": "",
