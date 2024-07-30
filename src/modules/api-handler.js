@@ -1,3 +1,5 @@
+import { displayError } from "./dom-handler";
+
 let apiKey = process.env.WEATHER_API_KEY;
 
 async function getWeatherData(city) {
@@ -13,7 +15,7 @@ async function getWeatherData(city) {
             const errorText = await response.text();
             console.error(`Error: ${response.status} ${response.statusText}`);
             console.error(`Error body: ${errorText}`);
-            throw new Error(`HTTP error! Status: ${response.status}`);
+            displayError(errorText);
         }
 
         const weatherDataJson = await response.json();

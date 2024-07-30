@@ -47,8 +47,8 @@ function displayCurrentConditions(weatherData) {
     }
 }
 
-function displayError() {
-
+function displayError(error) {
+    alert(`Error fetching data. ${error}`);
 }
 
 function clearDisplay() {
@@ -68,4 +68,4 @@ function camelCaseToSpaceSeparated(string) {
 }
 
 
-export { search, displayCurrentConditions, displayAddress };
+export { search, displayCurrentConditions, displayAddress, displayError };
